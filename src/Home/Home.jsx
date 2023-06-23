@@ -2,7 +2,6 @@ import { useState } from "react";
 import { snacks } from "../db/Snacks";
 import "./home.css";
 export function Home() {
-  const [updatedSnacks, setUpdatedSnacks] = useState(snacks);
   const [searchedSnacks, setSearchedSnacks] = useState(snacks);
   const [userSearchedSnack, setUserSearchedSnack] = useState("");
 
@@ -16,37 +15,37 @@ export function Home() {
           )*/
 
   function handlePriceSort() {
-    setSearchedSnacks([...updatedSnacks].sort((a, b) => b.price - a.price));
+    setSearchedSnacks([...searchedSnacks].sort((a, b) => b.price - a.price));
   }
 
   function handleWeightSort() {
     setSearchedSnacks(
-      [...updatedSnacks].sort((a, b) => b.product_weight - a.product_weight)
+      [...searchedSnacks].sort((a, b) => b.product_weight - a.product_weight)
     );
   }
 
   function handleCaloriesSort() {
     setSearchedSnacks(
-      [...updatedSnacks].sort((a, b) => b.calories - a.calories)
+      [...searchedSnacks].sort((a, b) => b.calories - a.calories)
     );
   }
 
   function handleIDSort() {
-    setSearchedSnacks([...updatedSnacks].sort((a, b) => b.id - a.id));
+    setSearchedSnacks([...searchedSnacks].sort((a, b) => b.id - a.id));
   }
 
   function handleSearchBtn() {
     userSearchedSnack.length
       ? setSearchedSnacks(
-          updatedSnacks.filter(({ product_name, ingredients }) =>
+          searchedSnacks.filter(({ product_name, ingredients }) =>
             product_name.toLowerCase().includes(userSearchedSnack.toLowerCase())
           )
         )
-      : setSearchedSnacks(updatedSnacks);
+      : setSearchedSnacks(searchedSnacks);
   }
 
   function handleNameSort () {
-    setSearchedSnacks([...updatedSnacks].sort())
+    setSearchedSnacks([...searchedSnacks].sort())
   }
 
   return (
