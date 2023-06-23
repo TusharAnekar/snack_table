@@ -9,31 +9,6 @@ export function Home() {
     setUserSearchedSnack(e.target.value);
   }
 
-  /*||
-          ingredients.filter((ingredient) =>
-            ingredient.toLowerCase().includes(userSearchedSnack.toLowerCase())
-          )*/
-
-  function handlePriceSort() {
-    setSearchedSnacks([...searchedSnacks].sort((a, b) => b.price - a.price));
-  }
-
-  function handleWeightSort() {
-    setSearchedSnacks(
-      [...searchedSnacks].sort((a, b) => b.product_weight - a.product_weight)
-    );
-  }
-
-  function handleCaloriesSort() {
-    setSearchedSnacks(
-      [...searchedSnacks].sort((a, b) => b.calories - a.calories)
-    );
-  }
-
-  function handleIDSort() {
-    setSearchedSnacks([...searchedSnacks].sort((a, b) => b.id - a.id));
-  }
-
   function handleSearchBtn() {
     userSearchedSnack.length
       ? setSearchedSnacks(
@@ -44,8 +19,34 @@ export function Home() {
       : setSearchedSnacks(snacks);
   }
 
-  function handleNameSort () {
-    setSearchedSnacks([...searchedSnacks].sort())
+  function handleIDSort() {
+    setSearchedSnacks([...searchedSnacks].sort((a, b) => b.id - a.id));
+  }
+
+  function handleNameSort() {
+    setSearchedSnacks(
+      [...searchedSnacks].sort((a, b) =>
+        a.product_name.localeCompare(b.product_name)
+      )
+    );
+  }
+
+  function handleWeightSort() {
+    setSearchedSnacks(
+      [...searchedSnacks].sort((a, b) =>
+        a.product_weight.localeCompare(b.product_weight)
+      )
+    );
+  }
+
+  function handlePriceSort() {
+    setSearchedSnacks([...searchedSnacks].sort((a, b) => b.price - a.price));
+  }
+
+  function handleCaloriesSort() {
+    setSearchedSnacks(
+      [...searchedSnacks].sort((a, b) => b.calories - a.calories)
+    );
   }
 
   return (
@@ -57,7 +58,7 @@ export function Home() {
         <tr>
           <th onClick={handleIDSort}>ID</th>
           <th onClick={handleNameSort}>Product Name</th>
-          <th onClick={ handleWeightSort}>Product Weight</th>
+          <th onClick={handleWeightSort}>Product Weight</th>
           <th onClick={handlePriceSort}>Price</th>
           <th onClick={handleCaloriesSort}>Calories</th>
           <th>Ingredients</th>
@@ -78,7 +79,7 @@ export function Home() {
               <td>{product_weight}</td>
               <td>{price}</td>
               <td>{calories}</td>
-              <td>{ingredients.map((ingredient) => ingredient)}</td>
+              <td>{ingredients.map((ingredient, index) => <span>{ingredient}{index < ingredients.length - 1 ? "," : ""}</span>)}</td>
             </tr>
           )
         )}
