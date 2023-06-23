@@ -2,50 +2,46 @@ import { useState } from "react";
 import { snacks } from "../db/Snacks";
 import "./home.css";
 export function Home() {
-  const [searchedSnacks, setSearchedSnacks] = useState(snacks);
+  const [updatedSnacks, setUpdatedSnacks] = useState(snacks);
   const [userSearchedSnack, setUserSearchedSnack] = useState("");
 
   function handleSearch(e) {
     setUserSearchedSnack(e.target.value);
   }
 
-  function handleSearchBtn() {
-    userSearchedSnack.length
-      ? setSearchedSnacks(
-          searchedSnacks.filter(({ product_name, ingredients }) =>
-            product_name.toLowerCase().includes(userSearchedSnack.toLowerCase())
-          )
-        )
-      : setSearchedSnacks(snacks);
-  }
+  const searchedSnacks = userSearchedSnack.length
+    ? updatedSnacks.filter(({ product_name }) =>
+        product_name.toLowerCase().includes(userSearchedSnack.toLowerCase())
+      )
+    : updatedSnacks;
 
   function handleIDSort() {
-    setSearchedSnacks([...searchedSnacks].sort((a, b) => b.id - a.id));
+    setUpdatedSnacks([...updatedSnacks].sort((a, b) => b.id - a.id));
   }
 
   function handleNameSort() {
-    setSearchedSnacks(
-      [...searchedSnacks].sort((a, b) =>
+    setUpdatedSnacks(
+      [...updatedSnacks].sort((a, b) =>
         a.product_name.localeCompare(b.product_name)
       )
     );
   }
 
   function handleWeightSort() {
-    setSearchedSnacks(
-      [...searchedSnacks].sort((a, b) =>
+    setUpdatedSnacks(
+      [...updatedSnacks].sort((a, b) =>
         a.product_weight.localeCompare(b.product_weight)
       )
     );
   }
 
   function handlePriceSort() {
-    setSearchedSnacks([...searchedSnacks].sort((a, b) => b.price - a.price));
+    setUpdatedSnacks([...updatedSnacks].sort((a, b) => b.price - a.price));
   }
 
   function handleCaloriesSort() {
-    setSearchedSnacks(
-      [...searchedSnacks].sort((a, b) => b.calories - a.calories)
+    setUpdatedSnacks(
+      [...updatedSnacks].sort((a, b) => b.calories - a.calories)
     );
   }
 
@@ -53,7 +49,6 @@ export function Home() {
     <>
       <h1>Snacks</h1>
       <input type="text" onChange={handleSearch} />
-      <button onClick={handleSearchBtn}>Search</button>
       <table>
         <tbody>
           <tr>
