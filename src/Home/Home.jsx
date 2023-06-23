@@ -41,7 +41,7 @@ export function Home() {
             product_name.toLowerCase().includes(userSearchedSnack.toLowerCase())
           )
         )
-      : setSearchedSnacks(searchedSnacks);
+      : setSearchedSnacks(snacks);
   }
 
   function handleNameSort () {
@@ -57,7 +57,7 @@ export function Home() {
         <tr>
           <th onClick={handleIDSort}>ID</th>
           <th onClick={handleNameSort}>Product Name</th>
-          <th onClick={handleWeightSort}>Product Weight</th>
+          <th onClick={ handleWeightSort}>Product Weight</th>
           <th onClick={handlePriceSort}>Price</th>
           <th onClick={handleCaloriesSort}>Calories</th>
           <th>Ingredients</th>
