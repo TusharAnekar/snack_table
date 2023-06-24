@@ -1,6 +1,8 @@
 import { useState } from "react";
+
 import { snacks } from "../db/Snacks";
 import "./home.css";
+
 export function Home() {
   const [updatedSnacks, setUpdatedSnacks] = useState(snacks);
   const [userSearchedSnack, setUserSearchedSnack] = useState("");
@@ -87,9 +89,9 @@ export function Home() {
   }
 
   return (
-    <>
+    <div className="table_container">
       <h1>Snacks</h1>
-      <input type="text" onChange={handleSearch} />
+      <input type="text" placeholder="search snacks" onChange={handleSearch} />
       <table>
         <tbody>
           <tr>
@@ -100,7 +102,7 @@ export function Home() {
             <th onClick={handleWeightSort}>Product Weight</th>
             <th onClick={handlePriceSort}>Price</th>
             <th onClick={handleCaloriesSort}>Calories</th>
-            <th>Ingredients</th>
+            <th className="th_ingredients">Ingredients</th>
           </tr>
 
           {searchedSnacks.map(
@@ -131,6 +133,6 @@ export function Home() {
           )}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }
