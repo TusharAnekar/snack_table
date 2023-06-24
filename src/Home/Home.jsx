@@ -4,6 +4,7 @@ import "./home.css";
 export function Home() {
   const [updatedSnacks, setUpdatedSnacks] = useState(snacks);
   const [userSearchedSnack, setUserSearchedSnack] = useState("");
+  const [isClicked, setIsClicked] = useState(false);
 
   function handleSearch(e) {
     setUserSearchedSnack(e.target.value);
@@ -16,33 +17,73 @@ export function Home() {
     : updatedSnacks;
 
   function handleIDSort() {
-    setUpdatedSnacks([...updatedSnacks].sort((a, b) => b.id - a.id));
+    if (isClicked) {
+      setIsClicked(false);
+      setUpdatedSnacks([...updatedSnacks].sort((a, b) => a.id - b.id));
+    } else {
+      setIsClicked(true);
+      setUpdatedSnacks([...updatedSnacks].sort((a, b) => b.id - a.id));
+    }
   }
 
   function handleNameSort() {
-    setUpdatedSnacks(
-      [...updatedSnacks].sort((a, b) =>
-        a.product_name.localeCompare(b.product_name)
-      )
-    );
+    if (isClicked) {
+      setIsClicked(false);
+      setUpdatedSnacks(
+        [...updatedSnacks].sort((a, b) =>
+          a.product_name.localeCompare(b.product_name)
+        )
+      );
+    } else {
+      setIsClicked(true);
+      setUpdatedSnacks(
+        [...updatedSnacks].sort((a, b) =>
+          b.product_name.localeCompare(a.product_name)
+        )
+      );
+    }
   }
 
   function handleWeightSort() {
-    setUpdatedSnacks(
-      [...updatedSnacks].sort((a, b) =>
-        a.product_weight.localeCompare(b.product_weight)
-      )
-    );
+    if (isClicked) {
+      setIsClicked(false);
+      setUpdatedSnacks(
+        [...updatedSnacks].sort((a, b) =>
+          a.product_weight.localeCompare(b.product_weight)
+        )
+      );
+    } else {
+      setIsClicked(true);
+      setUpdatedSnacks(
+        [...updatedSnacks].sort((a, b) =>
+          b.product_weight.localeCompare(a.product_weight)
+        )
+      );
+    }
   }
 
   function handlePriceSort() {
-    setUpdatedSnacks([...updatedSnacks].sort((a, b) => b.price - a.price));
+    if (isClicked) {
+      setIsClicked(false);
+      setUpdatedSnacks([...updatedSnacks].sort((a, b) => a.price - b.price));
+    } else {
+      setIsClicked(true);
+      setUpdatedSnacks([...updatedSnacks].sort((a, b) => b.price - a.price));
+    }
   }
 
   function handleCaloriesSort() {
-    setUpdatedSnacks(
-      [...updatedSnacks].sort((a, b) => b.calories - a.calories)
-    );
+    if (isClicked) {
+      setIsClicked(false);
+      setUpdatedSnacks(
+        [...updatedSnacks].sort((a, b) => a.calories - b.calories)
+      );
+    } else {
+      setIsClicked(true);
+      setUpdatedSnacks(
+        [...updatedSnacks].sort((a, b) => b.calories - a.calories)
+      );
+    }
   }
 
   return (
@@ -52,7 +93,9 @@ export function Home() {
       <table>
         <tbody>
           <tr>
-            <th onClick={handleIDSort}>ID</th>
+            <th value="id" onClick={handleIDSort}>
+              ID
+            </th>
             <th onClick={handleNameSort}>Product Name</th>
             <th onClick={handleWeightSort}>Product Weight</th>
             <th onClick={handlePriceSort}>Price</th>
