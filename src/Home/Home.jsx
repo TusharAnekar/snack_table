@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { snacks } from "../db/Snacks";
+import { snacks } from "../db/snacks";
 import "./home.css";
 
 export function Home() {
