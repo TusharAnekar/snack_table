@@ -1,5 +1,4 @@
 import "./App.css";
-import { Home } from "./Home/Home";
 import { useSnacksContext } from "./contexts/snacks-context";
 
 function App() {
@@ -80,7 +79,6 @@ function App() {
           )}
         </tbody>
       </table>
-      {/* <Home /> */}
     </div>
   );
 }
