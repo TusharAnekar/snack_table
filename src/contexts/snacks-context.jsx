@@ -17,6 +17,10 @@ const SnacksProvider = ({ children }) => {
     ingredientsSortType,
   } = snacks;
 
+  useEffect(() => {
+    setSnacks({ type: "SET_STATE_SNACKS", payload: snacksData });
+  }, []);
+
   const searchFilteredSnacks = searchInput.length
     ? stateSnacks.filter(
         ({ product_name, ingredients }) =>
@@ -78,10 +82,6 @@ const SnacksProvider = ({ children }) => {
             : b.ingredients.join("").localeCompare(a.ingredients.join(""))
         )
       : caloriesSortedSnacks;
-
-  useEffect(() => {
-    setSnacks({ type: "SET_STATE_SNACKS", payload: snacksData });
-  }, []);
 
   return (
     <SnacksContext.Provider
