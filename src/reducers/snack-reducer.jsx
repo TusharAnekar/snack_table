@@ -1,7 +1,5 @@
-import { snacksData } from "../db/snacksData";
-
 const initialSnack = {
-  stateSnacks: snacksData,
+  stateSnacks: [],
   searchInput: "",
   idSortType: "",
   productNameSortType: "",
@@ -13,6 +11,8 @@ const initialSnack = {
 
 const snackReducer = (state, { type, payload }) => {
   switch (type) {
+    case "SET_STATE_SNACKS":
+      return { ...state, stateSnacks: payload };
     case "SET_SEARCH_INPUT":
       return { ...state, searchInput: payload };
     case "UPDATE_ID_SORT_TYPE":

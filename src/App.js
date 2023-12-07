@@ -2,7 +2,7 @@ import "./App.css";
 import { useSnacksContext } from "./contexts/snacks-context";
 
 function App() {
-  const { setSnacks, filteredSnacks } = useSnacksContext();
+  const { setSnacks, ingredientsSortedSnacks } = useSnacksContext();
 
   const handleInput = (e) => {
     setSnacks({ type: "SET_SEARCH_INPUT", payload: e.target.value });
@@ -51,7 +51,7 @@ function App() {
             </th>
           </tr>
 
-          {filteredSnacks?.map(
+          {ingredientsSortedSnacks?.map(
             ({
               id,
               product_name,
