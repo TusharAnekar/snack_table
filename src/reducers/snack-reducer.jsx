@@ -1,7 +1,7 @@
-import { snacks } from "../db/snacks";
+import { snacksData } from "../db/snacksData";
 
 const initialSnack = {
-  stateSnacks: snacks,
+  stateSnacks: snacksData,
   searchInput: "",
   idSortType: "",
   productNameSortType: "",
