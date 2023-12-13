@@ -7,6 +7,7 @@ const initialSnack = {
   priceSortType: "",
   caloriesSortType: "",
   ingredientsSortType: "",
+  tableHeaderName: "",
 };
 
 const snackReducer = (state, { type, payload }) => {
@@ -80,6 +81,8 @@ const snackReducer = (state, { type, payload }) => {
             ? "HTL"
             : "LTH",
       };
+    case "SET_TABLE_HEADER_NAME":
+      return { ...state, tableHeaderName: payload };
 
     default:
       return state;

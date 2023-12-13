@@ -2,7 +2,7 @@ import "./App.css";
 import { useSnacksContext } from "./contexts/snacks-context";
 
 function App() {
-  const { setSnacks, ingredientsSortedSnacks } = useSnacksContext();
+  const { setSnacks, sortedSnacks } = useSnacksContext();
 
   const handleInput = (e) => {
     setSnacks({ type: "SET_SEARCH_INPUT", payload: e.target.value });
@@ -10,26 +10,32 @@ function App() {
 
   const handleId = (e) => {
     setSnacks({ type: "UPDATE_ID_SORT_TYPE" });
+    setSnacks({ type: "SET_TABLE_HEADER_NAME", payload: "ID" });
   };
 
   const handleName = (e) => {
     setSnacks({ type: "UPDATE_PRODUCT_NAME_SORT_TYPE" });
+    setSnacks({ type: "SET_TABLE_HEADER_NAME", payload: "NAME" });
   };
 
   const handleWeight = (e) => {
     setSnacks({ type: "UPDATE_PRODUCT_WEIGHT_SORT_TYPE" });
+    setSnacks({ type: "SET_TABLE_HEADER_NAME", payload: "WEIGHT" });
   };
 
   const handlePrice = (e) => {
     setSnacks({ type: "UPDATE_PRICE_SORT_TYPE" });
+    setSnacks({ type: "SET_TABLE_HEADER_NAME", payload: "PRICE" });
   };
 
   const handleCalories = (e) => {
     setSnacks({ type: "UPDATE_CALORIES_SORT_TYPE" });
+    setSnacks({ type: "SET_TABLE_HEADER_NAME", payload: "CALORIES" });
   };
 
   const handleIngredients = (e) => {
     setSnacks({ type: "UPDATE_INGREDIENTS_SORT_TYPE" });
+    setSnacks({ type: "SET_TABLE_HEADER_NAME", payload: "INGREDIENTS" });
   };
 
   return (
@@ -51,7 +57,7 @@ function App() {
             </th>
           </tr>
 
-          {ingredientsSortedSnacks?.map(
+          {sortedSnacks?.map(
             ({
               id,
               product_name,
