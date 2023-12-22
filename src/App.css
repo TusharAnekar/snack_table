@@ -39,3 +39,15 @@ td {
 .table_container {
   margin: 1rem;
 }
+
+.up-down-arrow-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-header-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}

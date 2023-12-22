@@ -1,8 +1,22 @@
 import "./App.css";
 import { useSnacksContext } from "./contexts/snacks-context";
 
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+
 function App() {
-  const { setSnacks, sortedSnacks } = useSnacksContext();
+  const {
+    snacks: {
+      idSortType,
+      productNameSortType,
+      productWeightSortType,
+      priceSortType,
+      caloriesSortType,
+      ingredientsSortType,
+    },
+    setSnacks,
+    sortedSnacks,
+  } = useSnacksContext();
 
   const handleInput = (e) => {
     setSnacks({ type: "SET_SEARCH_INPUT", payload: e.target.value });
@@ -47,13 +61,95 @@ function App() {
       <table>
         <tbody>
           <tr>
-            <th onClick={handleId}>ID</th>
-            <th onClick={handleName}>Product Name</th>
-            <th onClick={handleWeight}>Product Weight</th>
-            <th onClick={handlePrice}>Price</th>
-            <th onClick={handleCalories}>Calories</th>
+            <th onClick={handleId}>
+              <div className="table-header-content">
+                ID{" "}
+                {idSortType === "LTH" ? (
+                  <ArrowDropDownIcon />
+                ) : idSortType === "HTL" ? (
+                  <ArrowDropUpIcon />
+                ) : (
+                  <div className="up-down-arrow-container">
+                    <ArrowDropUpIcon />
+                    <ArrowDropDownIcon />
+                  </div>
+                )}
+              </div>
+            </th>
+            <th onClick={handleName}>
+              <div className="table-header-content">
+                Product Name{" "}
+                {productNameSortType === "LTH" ? (
+                  <ArrowDropDownIcon />
+                ) : productNameSortType === "HTL" ? (
+                  <ArrowDropUpIcon />
+                ) : (
+                  <div className="up-down-arrow-container">
+                    <ArrowDropUpIcon />
+                    <ArrowDropDownIcon />
+                  </div>
+                )}
+              </div>
+            </th>
+            <th onClick={handleWeight}>
+              <div className="table-header-content">
+                Product Weight{" "}
+                {productWeightSortType === "LTH" ? (
+                  <ArrowDropDownIcon />
+                ) : productWeightSortType === "HTL" ? (
+                  <ArrowDropUpIcon />
+                ) : (
+                  <div className="up-down-arrow-container">
+                    <ArrowDropUpIcon />
+                    <ArrowDropDownIcon />
+                  </div>
+                )}
+              </div>
+            </th>
+            <th onClick={handlePrice}>
+              <div className="table-header-content">
+                Price{" "}
+                {priceSortType === "LTH" ? (
+                  <ArrowDropDownIcon />
+                ) : priceSortType === "HTL" ? (
+                  <ArrowDropUpIcon />
+                ) : (
+                  <div className="up-down-arrow-container">
+                    <ArrowDropUpIcon />
+                    <ArrowDropDownIcon />
+                  </div>
+                )}
+              </div>
+            </th>
+            <th onClick={handleCalories}>
+              <div className="table-header-content">
+                Calories{" "}
+                {caloriesSortType === "LTH" ? (
+                  <ArrowDropDownIcon />
+                ) : caloriesSortType === "HTL" ? (
+                  <ArrowDropUpIcon />
+                ) : (
+                  <div className="up-down-arrow-container">
+                    <ArrowDropUpIcon />
+                    <ArrowDropDownIcon />
+                  </div>
+                )}
+              </div>
+            </th>
             <th className="th_ingredients" onClick={handleIngredients}>
-              Ingredients
+              <div className="table-header-content">
+                Ingredients{" "}
+                {ingredientsSortType === "LTH" ? (
+                  <ArrowDropDownIcon />
+                ) : ingredientsSortType === "HTL" ? (
+                  <ArrowDropUpIcon />
+                ) : (
+                  <div className="up-down-arrow-container">
+                    <ArrowDropUpIcon />
+                    <ArrowDropDownIcon />
+                  </div>
+                )}
+              </div>
             </th>
           </tr>
 
